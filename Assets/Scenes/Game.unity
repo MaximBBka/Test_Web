@@ -394,7 +394,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 183797121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf067bb32e735ae4484c28e753a29cd3, type: 3}
+  m_Script: {fileID: 11500000, guid: 08e97ee9bbd195a4198670f267470bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer:
@@ -522,7 +522,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 266573020}
-  _loadSprites: {fileID: 183797124}
+  _setupSprites: {fileID: 183797124}
+  _setupAudio: {fileID: 319602650}
 --- !u!114 &266573022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,6 +590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 319602649}
   - component: {fileID: 319602648}
+  - component: {fileID: 319602650}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -606,8 +608,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3204acdb755fd0b4c8b872b9567005dd, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 0.037
   m_Pitch: 1
   Loop: 0
@@ -707,6 +709,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &319602650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319602647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469fedce45bb80049b0e36392994dc0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 319602648}
+  _folder: Sound
 --- !u!1 &399511272
 GameObject:
   m_ObjectHideFlags: 0
