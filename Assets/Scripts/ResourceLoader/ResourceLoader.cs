@@ -9,22 +9,28 @@ namespace Game
     public class ResourceLoader<T>
     {
         public delegate void CallBackLoader(IList<T> resource);
+        private AsyncOperationHandle<IList<T>>? _handle;
         public IEnumerator Load(CallBackLoader callBack, string folder)
         {
-            AsyncOperationHandle<IList<T>> handle = Addressables.LoadAssetsAsync<T>(folder, null);
+            _handle = Addressables.LoadAssetsAsync<T>(folder, null);
 
-            yield return handle;
+            yield return _handle;
 
-            if (handle.Status == AsyncOperationStatus.Succeeded)
+            if (_handle.Value.Status == AsyncOperationStatus.Succeeded)
             {
-                callBack.Invoke(handle.Result);
+                callBack.Invoke(_handle.Value.Result);
             }
             else
             {
                 Debug.LogError("Не удалось загрузить файлы");
             }
-
-            Addressables.Release(handle);
+        }
+        public void UnLoad()
+        {
+            if (_handle.HasValue)
+            {
+                Addressables.Release(_handle.Value);
+            }
         }
     }
 }

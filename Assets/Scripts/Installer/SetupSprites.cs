@@ -23,5 +23,9 @@ namespace Game
                 _spriteRenderer[i].sprite = sprites[i];
             }
         }
+        private void OnDestroy()
+        {
+            loader.UnLoad();
+        }
     }
 }

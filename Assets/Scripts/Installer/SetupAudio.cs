@@ -9,26 +9,22 @@ namespace Game
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private string _folder;
         private List<AudioClip> _audioClips;
-        private ResourceLoader<AudioClip> loader = new ResourceLoader<AudioClip>();
 
         public void StartLoad()
         {
-            StartCoroutine(loader.Load(Setup, _folder));
-        }
-        private void Setup(IList<AudioClip> audioclips)
-        {
-            _audioClips = new List<AudioClip>(audioclips);
+            _audioClips = new List<AudioClip>(Resources.LoadAll<AudioClip>("Sound"));
             StartCoroutine(PlayMusic());
         }
+
         private IEnumerator PlayMusic()
         {
             while (true)
             {
                 AudioClip clip = _audioClips[Random.Range(0, _audioClips.Count)];
-                audioSource.PlayOneShot(clip);
+                audioSource.clip = clip;
+                audioSource.Play();
                 yield return new WaitForSeconds(clip.length);
             }
         }
-
     }
 }

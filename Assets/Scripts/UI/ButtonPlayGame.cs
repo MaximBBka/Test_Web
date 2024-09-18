@@ -8,6 +8,12 @@ namespace Game
         [SerializeField] private SetupSprites _setupSprites;
         [SerializeField] private SetupAudio _setupAudio;
 
+        private void Start()
+        {
+            #if UNITY_WEBGL
+            Application.ExternalEval($"console.log('{(Application.isMobilePlatform ? "Mobile" : "Desktop")}');");
+            #endif
+        }
         public void Click()
         {
             _animator.SetBool("anim", true);
